@@ -1,5 +1,8 @@
 package domain;
 
+import javax.persistence.Entity;
+
+@Entity
 public enum Menu {
     MENU1("떡볶이", 3000),
     MENU2("라면", 2500),
