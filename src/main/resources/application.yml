@@ -1,13 +1,13 @@
 spring:
   datasource:
-    url: jdbc:sqlite:project3.db
-    driver-class-name: org.sqlite.JDBC
+    url: jdbc:mysql://localhost:3306/project3?serverTimezone=UTC&characterEncoding=UTF-8
+    username: park
+    password: 1234
   jpa:
-    database-platform: your.custom.SQLiteDialect
-    show-sql: true
+    show-sql: false
     properties:
       hibernate:
         format_sql: true
     hibernate:
-      ddl-auto: update
+      ddl-auto: create-drop
   defer-datasource-initialization: true

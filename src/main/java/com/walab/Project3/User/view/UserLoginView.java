@@ -3,10 +3,12 @@ package com.walab.Project3.User.view;
 import com.walab.Project3.User.domain.User;
 import com.walab.Project3.User.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Component;
 
 import java.util.Scanner;
 
 @RequiredArgsConstructor
+@Component
 public class UserLoginView {
     private final UserService userService;
 
@@ -21,12 +23,10 @@ public class UserLoginView {
         String password = scanner.nextLine();
 
         try {
-            // Attempt to log in and return the User object
             User loggedInUser = userService.loginUser(email, password);
-            System.out.println("=====================로그인 완료==================");
+            System.out.println("*로그인 완료!*");
             return loggedInUser;
         } catch (IllegalArgumentException e) {
-            // Handle invalid login attempts
             System.out.println(e.getMessage());
             return null;
         }

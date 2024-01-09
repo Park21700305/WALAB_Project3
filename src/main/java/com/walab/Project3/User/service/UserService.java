@@ -2,6 +2,7 @@ package com.walab.Project3.User.service;
 
 import com.walab.Project3.User.domain.User;
 import com.walab.Project3.User.repository.UserRepository;
+import com.walab.Project3.seat.service.SeatService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
@@ -14,6 +15,7 @@ import java.util.Objects;
 public class UserService {
 
     private final UserRepository userRepository;
+    private final SeatService seatService;
 
     public void registerUser(String name, String email, String password) {
         User newUser = User.builder()
@@ -32,13 +34,12 @@ public class UserService {
     // Method to log in a user
     public User loginUser(String email, String password) {
         User user = userRepository.findByEmail(email)
-                .orElseThrow(() -> new IllegalArgumentException("사용자가 존재하지 않습니다."));
+                .orElseThrow(() -> new IllegalArgumentException("*사용자가 존재하지 않습니다.*"));
 
         if (!user.getPassword().equals(password)) {
-            throw new IllegalArgumentException("비밀번호가 일치하지 않습니다.");
+            throw new IllegalArgumentException("*비밀번호가 일치하지 않습니다.*");
         }
 
-        user.setInUse(true);
         userRepository.save(user);
         return user;
     }
@@ -64,18 +65,44 @@ public class UserService {
         }
     }
 
-    // Print all users - for admin
     public void printAllUsers() {
         userRepository.findAll().forEach(user -> {
+            String seatNumber = "null";
+            if (user.getSeat() != null && user.getSeat().getSeatNumber() != null) {
+                seatNumber = user.getSeat().getSeatNumber();
+            }
+
             // Print user details - customize as needed
-            System.out.println("User: " + user.getName() + ", Email: " + user.getEmail());
+            System.out.println(
+                    "이름: " + user.getName() + "," +
+                            " 이메일: " + user.getEmail() + "," +
+                            " 좌석: " + seatNumber + "," +
+                            " 잔여시간: " + user.getRemainingMinutes() + "분," +
+                            " 총가격: " + user.getTotalPrice() + "원," +
+                            " 사용여부: " + user.isInUse() + "," +
+                            " 관리자자격: " + user.isAdmin()
+            );
         });
     }
 
-    // Change a user's seat - for admin
-    public void changeUserSeat(/* parameters if needed */) {
-        // Implementation depends on how you manage seat assignments
-        // This could involve retrieving a user and updating their seat information
+
+    public void timeAddUser(int time, User user) {
+        user.setRemainingMinutes(user.getRemainingMinutes() + time);
+        if (time == 30) {
+            user.setTotalPrice(user.getTotalPrice() + 1000);
+        } else if (time == 60) {
+            user.setTotalPrice(user.getTotalPrice() + 2000);
+        } else if (time == 120) {
+            user.setTotalPrice(user.getTotalPrice() + 3000);
+        } else if (time == 180) {
+            user.setTotalPrice(user.getTotalPrice() + 4000);
+        } else if (time == 240) {
+            user.setTotalPrice(user.getTotalPrice() + 5000);
+        } else if (time == 300) {
+            user.setTotalPrice(user.getTotalPrice() + 6000);
+        }
+
+        userRepository.save(user);
     }
 
     public void deleteUser(User user) {

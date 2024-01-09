@@ -39,7 +39,7 @@ public class User {
     @Column(name = "total_price")
     private Integer totalPrice;
 
-    // 0: 사용 종료, 1: 사용 중
+    // false: 사용 종료, true: 사용 중
     @Column(name = "in_use")
     private boolean inUse;
 
@@ -52,7 +52,6 @@ public class User {
         return String.format("%02d시간 %02d분", hours, minutes);
     }
 
-    // Method to decrement the remaining time by one minute
     public void decrementRemainingTime() {
         if (remainingMinutes != null && remainingMinutes > 0) {
             remainingMinutes--;

@@ -22,7 +22,7 @@ public class Seat {
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
-    @Column(name = "seat_number")
+    @Column(name = "seat_number", unique = true)
     private String seatNumber;
     @Column(name = "is_used")
     private boolean isUsed;
