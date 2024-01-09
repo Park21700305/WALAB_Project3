@@ -1,18 +1,16 @@
 package com.walab.Project3.User.domain;
 
-import com.walab.Project3.order.domain.Order;
+import com.walab.Project3.seat.domain.Seat;
 import jakarta.persistence.*;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @NoArgsConstructor
 public class User {
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = false)
-    private List<Order> orderList = new ArrayList<>();
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = false)
+    private Seat seat;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
@@ -30,8 +28,12 @@ public class User {
     @Column(name = "register_date")
     private LocalDateTime regDate;
 
-    @Column(name = "charging_time")
-    private Integer chargingTime;
+    @Column(name = "remaining_time")
+    private LocalDateTime remainingTime;
     @Column(name = "total_price")
     private Integer totalPrice;
+
+    // 0: 사용 종료, 1: 사용 중
+    @Column(name = "in_use")
+    private boolean inUse;
 }
