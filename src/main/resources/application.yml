@@ -1,7 +1,9 @@
 spring:
   datasource:
     url: jdbc:sqlite:project3.db
+    driver-class-name: org.sqlite.JDBC
   jpa:
+    database-platform: your.custom.SQLiteDialect
     show-sql: true
     properties:
       hibernate:
