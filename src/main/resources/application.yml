@@ -11,3 +11,15 @@ spring:
     hibernate:
       ddl-auto: create-drop
   defer-datasource-initialization: true
+
+#spring:
+#  jpa:
+#    database-platform: com.walab.Project3.config.SQLDialect
+#    hibernate:
+#      ddl-auto: update
+#  datasource:
+#    url: jdbc:sqlite:sqlitesample.db
+#    driver-class-name: org.sqlite.JDBC
+#    username:
+#    password:
+#    initialization-mode: always

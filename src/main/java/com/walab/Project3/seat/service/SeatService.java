@@ -1,6 +1,7 @@
 package com.walab.Project3.seat.service;
 
 import com.walab.Project3.User.domain.User;
+import com.walab.Project3.User.repository.UserRepository;
 import com.walab.Project3.seat.domain.Seat;
 import com.walab.Project3.seat.repository.SeatRepository;
 import jakarta.transaction.Transactional;
@@ -15,6 +16,7 @@ import java.util.Scanner;
 public class SeatService {
 
     private final SeatRepository seatRepository;
+    private final UserRepository userRepository;
 
     public void initializeSeats() {
         for (int num = 1; num <= 10; num++) {
@@ -75,7 +77,6 @@ public class SeatService {
         String currentSeatNumber = scanner.nextLine();
 
         Seat currentSeat = seatRepository.findBySeatNumber(currentSeatNumber);
-
         if (currentSeat == null) {
             System.out.println("존재하지 않는 좌석 번호입니다.");
             return;
@@ -86,11 +87,17 @@ public class SeatService {
             return;
         }
 
+        // Fetch the user associated with the current seat
+        User currentUser = currentSeat.getUser();
+        if (currentUser == null) {
+            System.out.println("해당 좌석에 연결된 사용자가 없습니다.");
+            return;
+        }
+
         System.out.print("변경할 새로운 좌석 번호를 입력하세요: ");
         String newSeatNumber = scanner.nextLine();
 
         Seat newSeat = seatRepository.findBySeatNumber(newSeatNumber);
-
         if (newSeat == null) {
             System.out.println("존재하지 않는 좌석 번호입니다.");
             return;
@@ -101,15 +108,21 @@ public class SeatService {
             return;
         }
 
+        // Update seat and user details
         currentSeat.setUsed(false);
-
-
         currentSeat.setUser(null);
+
         newSeat.setUsed(true);
-        newSeat.setUser(currentSeat.getUser());
+        newSeat.setUser(currentUser);
+
+        // Update the user's seat reference
+        currentUser.setSeat(newSeat);
 
         seatRepository.save(currentSeat);
         seatRepository.save(newSeat);
+        // Assuming there's a userRepository or similar to save the user
+        userRepository.save(currentUser);
+
         System.out.println("*좌석이 변경되었습니다.*");
     }
 }
