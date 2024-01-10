@@ -9,6 +9,5 @@ import java.util.Optional;
 public interface UserRepository extends JpaRepository<User, Long> {
     Optional<User> findByEmail(String email);
 
-    // Method to find all users who are currently logged in
     List<User> findAllByInUse(boolean inUse);
 }

@@ -43,6 +43,19 @@ public class User {
     @Column(name = "in_use")
     private boolean inUse;
 
+    @Builder
+    public User(String name, String password, String email, boolean isAdmin, Integer remainingMinutes, Integer totalPrice, boolean inUse) {
+        this.name = name;
+        this.password = password;
+        this.email = email;
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        this.regDate = LocalDateTime.now().format(formatter);
+        this.isAdmin = isAdmin;
+        this.remainingMinutes = remainingMinutes;
+        this.totalPrice = totalPrice;
+        this.inUse = inUse;
+    }
+
     public String getFormattedRemainingTime() {
         if (remainingMinutes == null || remainingMinutes <= 0) {
             return "0분";
@@ -56,18 +69,5 @@ public class User {
         if (remainingMinutes != null && remainingMinutes > 0) {
             remainingMinutes--;
         }
-    }
-
-    @Builder
-    public User(String name, String password, String email, boolean isAdmin, Integer remainingMinutes, Integer totalPrice, boolean inUse) {
-        this.name = name;
-        this.password = password;
-        this.email = email;
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-        this.regDate = LocalDateTime.now().format(formatter);
-        this.isAdmin = isAdmin;
-        this.remainingMinutes = remainingMinutes;
-        this.totalPrice = totalPrice;
-        this.inUse = inUse;
     }
 }

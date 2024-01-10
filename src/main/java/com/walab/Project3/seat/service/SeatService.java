@@ -87,7 +87,6 @@ public class SeatService {
             return;
         }
 
-        // Fetch the user associated with the current seat
         User currentUser = currentSeat.getUser();
         if (currentUser == null) {
             System.out.println("해당 좌석에 연결된 사용자가 없습니다.");
@@ -108,19 +107,17 @@ public class SeatService {
             return;
         }
 
-        // Update seat and user details
         currentSeat.setUsed(false);
         currentSeat.setUser(null);
 
         newSeat.setUsed(true);
         newSeat.setUser(currentUser);
 
-        // Update the user's seat reference
         currentUser.setSeat(newSeat);
 
         seatRepository.save(currentSeat);
         seatRepository.save(newSeat);
-        // Assuming there's a userRepository or similar to save the user
+
         userRepository.save(currentUser);
 
         System.out.println("*좌석이 변경되었습니다.*");

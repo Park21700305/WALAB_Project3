@@ -31,7 +31,6 @@ public class UserService {
         userRepository.save(newUser);
     }
 
-    // Method to log in a user
     public User loginUser(String email, String password) {
         User user = userRepository.findByEmail(email)
                 .orElseThrow(() -> new IllegalArgumentException("*사용자가 존재하지 않습니다.*"));
@@ -44,12 +43,10 @@ public class UserService {
         return user;
     }
 
-    // Check if email is duplicate
     public boolean isEmailDuplicate(String email) {
         return userRepository.findByEmail(email).isPresent();
     }
 
-    // Create an admin user
     public void createAdminUser(String name, String email, String password) {
         if (!isEmailDuplicate(email)) {
             registerUser(name, email, password);
@@ -72,7 +69,7 @@ public class UserService {
                 seatNumber = user.getSeat().getSeatNumber();
             }
 
-            // Print user details - customize as needed
+
             System.out.println(
                     "이름: " + user.getName() + "," +
                             " 이메일: " + user.getEmail() + "," +
