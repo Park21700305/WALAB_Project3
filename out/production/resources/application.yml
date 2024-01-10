@@ -1,0 +1,25 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/project3?serverTimezone=UTC&characterEncoding=UTF-8
+    username: park
+    password: 1234
+  jpa:
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: true
+    hibernate:
+      ddl-auto: create-drop
+  defer-datasource-initialization: true
+
+#spring:
+#  jpa:
+#    database-platform: com.walab.Project3.config.SQLDialect
+#    hibernate:
+#      ddl-auto: update
+#  datasource:
+#    url: jdbc:sqlite:sqlitesample.db
+#    driver-class-name: org.sqlite.JDBC
+#    username:
+#    password:
+#    initialization-mode: always

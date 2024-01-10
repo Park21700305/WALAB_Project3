@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/WALAB_Project3.iml" filepath="$PROJECT_DIR$/WALAB_Project3.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Project3.iml" filepath="$PROJECT_DIR$/.idea/modules/Project3.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Project3.main.iml" filepath="$PROJECT_DIR$/.idea/modules/Project3.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Project3.test.iml" filepath="$PROJECT_DIR$/.idea/modules/Project3.test.iml" />
     </modules>
   </component>
 </project>
