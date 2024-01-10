@@ -13,6 +13,7 @@
 
 ### 📊 엔티티 관계
 - `@OneToOne`을 사용하여 유저와 좌석을 일대일 관계로 매핑하였습니다.
+- 
 ![엔티티 관계 다이어그램](https://github.com/Park21700305/WALAB_Project3/assets/93187535/d6c8570a-0a65-48e4-87b8-8e6dd97a2d79)
 
 ### 📚 사용한 라이브러리
@@ -24,8 +25,10 @@
 - ORM과 JPA 사용: SQLite3 사용 시 다이얼렉트의 부재로 인해 MySQL을 사용하였습니다.
 
 ### 📸 프로그램 실행 캡쳐
-![프로그램 실행 캡쳐1](https://github.com/Park21700305/WALAB_Project3/assets/93187535/0033ba9c-8216-4206-ae5f-fab1a02ff07c)
-![프로그램 실행 캡쳐2](https://github.com/Park21700305/WALAB_Project3/assets/93187535/d0669de0-a878-417f-b886-8fd303753070)
 ![프로그램 실행 캡쳐3](https://github.com/Park21700305/WALAB_Project3/assets/93187535/d794ab93-59d8-429b-8994-dd6039eaa864)
+![프로그램 실행 캡쳐2](https://github.com/Park21700305/WALAB_Project3/assets/93187535/d0669de0-a878-417f-b886-8fd303753070)
+![프로그램 실행 캡쳐1](https://github.com/Park21700305/WALAB_Project3/assets/93187535/0033ba9c-8216-4206-ae5f-fab1a02ff07c)
+
+
 ![프로그램 실행 캡쳐4](https://github.com/Park21700305/WALAB_Project3/assets/93187535/3567bbda-7c96-4cd8-b6d7-c249b4435edd)
 ![프로그램 실행 캡쳐5](https://github.com/Park21700305/WALAB_Project3/assets/93187535/33b84841-5673-4111-874b-7b52803d87c1)
